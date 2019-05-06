@@ -1,7 +1,7 @@
 ## How to setup & start server
-1. connect to postgres, localhost:5432
-2. apply sql in ./sql/diff sequentially 
-3. docker-compose up --build
+1. docker-compose up --build
+2. connect to postgres, localhost:5432
+3. apply sql in ./sql/diff sequentially 
 
 ## API
 ### CREATE shortLink
