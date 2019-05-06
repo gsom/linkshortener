@@ -14,12 +14,14 @@ var createShortLink = function (request, callback) {
     }
 
     shortLinkModel.createShortLink(shortLink, (err, res) => {
-        callback(err, res)
+        //fixme add proper error validation
+        //add retry logic
+        callback(err, shortLink)
     })
 }
 
 var generateShortLink = function () {
-    //FIXME. 
+    //fixme add logic to generate short link taking into account what already exists in database
     return Math.random().toString(36).substring(7);
 }
 module.exports = {
