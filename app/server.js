@@ -30,7 +30,7 @@ router.route('/link')
                 res.send(err)
                 return
             }
-            res.json(response)
+            res.send(response.ShortUrl)
         })
     })
 
