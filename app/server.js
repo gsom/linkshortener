@@ -30,7 +30,19 @@ router.route('/link')
                 res.send(err)
                 return
             }
-            res.send(response.ShortUrl)
+            res.send(response)
+        })
+    })
+
+router.route('/*')
+    .get(function (req, res) {
+        shortLinkController.getShortLink(req.params[0], (err, response) => {
+            if (err != null) {
+                res.status(400)
+                res.send(err)
+                return
+            }
+            res.send(response)
         })
     })
 

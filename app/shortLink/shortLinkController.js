@@ -18,7 +18,22 @@ var createShortLink = function (request, callback) {
     shortLinkModel.createShortLink(shortLink, (err, res) => {
         //fixme add proper error validation
         //add retry logic
-        callback(err, shortLink)
+        callback(err, shortLink.ShortUrl)
+    })
+}
+
+var getShortLink = function (shortenedPart, callback) {
+    let ShortUrl = config.appDomain + "/" + shortenedPart
+    shortLinkModel.getShortLinkByShortUrl(ShortUrl, (err, res) => {
+        if (err) {
+            callback(err, null)
+            return
+        }
+        if (res != null && res.length > 0) {
+            callback(null, res[0].FullUrl)
+            return
+        }
+        callback("can not find url", null)
     })
 }
 
@@ -27,5 +42,6 @@ var generateShortLink = function () {
     return config.appDomain + "/" + Math.random().toString(36).substring(7);
 }
 module.exports = {
-    createShortLink: createShortLink
+    createShortLink: createShortLink,
+    getShortLink: getShortLink
 }
