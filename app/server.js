@@ -27,7 +27,7 @@ router.route('/link')
         shortLinkController.createShortLink(req.body, (err, response) => {
             if (err != null) {
                 res.status(400)
-                res.send()
+                res.send(err)
                 return
             }
             res.json(response)
