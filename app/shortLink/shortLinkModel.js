@@ -10,9 +10,20 @@ const pool = new Pool(
 const createShortLinkSQL =
     `
     INSERT INTO "ShortLink"
-        ("ShortUrl", "FullUrl")
+        ("FullUrl","ShortUrl")
     VALUES
     ($1, $2);
+    `
+
+const getShortLinkByShortUrlSQL =
+    `
+    SELECT 
+        "Id",
+        "FullUrl",
+        "ShortUrl"
+    FROM "ShortLink"
+    WHERE 
+        "ShortUrl" = $1
     `
 var createShortLink = function (link, callback) {
 
@@ -33,6 +44,25 @@ var createShortLink = function (link, callback) {
             callback(null, results.rows)
         })
 }
+var getShortLinkByShortUrl = function (ShortUrl, callback) {
+    pool.query(
+        getShortLinkByShortUrlSQL, [
+            ShortUrl
+        ],
+        (error, results) => {
+            if (error) {
+                console.error({
+                    context: "getShortLinkByShortUrlModel",
+                    args: link,
+                    err: error
+                })
+                callback(error, null)
+                return
+            }
+            callback(null, results.rows)
+        })
+}
 module.exports = {
-    createShortLink: createShortLink
+    createShortLink: createShortLink,
+    getShortLinkByShortUrl: getShortLinkByShortUrl
 }
