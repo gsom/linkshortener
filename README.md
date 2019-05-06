@@ -6,4 +6,4 @@
 
 - example:
 
-curl --header "Content-Type: application/json"   --request POST   --data '{FullUrl":"https://google.com"}'   http://localhost:8001/api/link
+curl --header "Content-Type: application/json"   --request POST   --data '{"FullUrl":"https://google.com"}'   http://localhost:8001/api/link
