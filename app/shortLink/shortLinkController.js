@@ -1,5 +1,7 @@
 'use strict'
 const shortLinkModel = require('./shortLinkModel')
+const config = require('../config')
+
 
 var createShortLink = function (request, callback) {
     //add check if link not a json
@@ -22,7 +24,7 @@ var createShortLink = function (request, callback) {
 
 var generateShortLink = function () {
     //fixme add logic to generate short link taking into account what already exists in database
-    return Math.random().toString(36).substring(7);
+    return config.appDomain + "/" + Math.random().toString(36).substring(7);
 }
 module.exports = {
     createShortLink: createShortLink

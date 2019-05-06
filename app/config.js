@@ -8,7 +8,8 @@ var config = {
         user: 'postgres',
         password: 'postgres',
         port: 5432
-    }
+    },
+    appDomain: "tier.app",
 };
 
 module.exports = config;
